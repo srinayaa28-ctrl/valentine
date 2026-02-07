@@ -5,100 +5,87 @@
 <title>Will You Be My Valentine? 💗</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: "Comic Sans MS", "Poppins", cursive;
-  background: linear-gradient(#ffd6e8, #fff0f6);
-  text-align: center;
-  overflow-x: hidden;
+body{
+  margin:0;
+  font-family:"Comic Sans MS","Poppins",cursive;
+  background:linear-gradient(#ffd6e8,#fff0f6);
+  text-align:center;
+  overflow-x:hidden;
 }
 
-h1 { color: #ff4d88; margin-top: 60px; }
+h1{color:#ff4d88;margin-top:60px;}
 
-button {
-  padding: 15px 30px;
-  font-size: 20px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
+button{
+  padding:15px 30px;
+  font-size:20px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-#yesBtn { background: #ff69b4; color: white; }
-#noBtn {
-  background: #ffc1d9;
-  color: #ff0066;
-  position: absolute;
+#yesBtn{background:#ff69b4;color:white;}
+#noBtn{
+  background:#ffc1d9;
+  color:#ff0066;
+  position:absolute;
 }
 
-.hidden { display: none; }
+.hidden{display:none;}
 
-.heart {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall 5s linear infinite;
-  pointer-events: none;
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall 5s linear infinite;
+  pointer-events:none;
 }
 
-@keyframes fall {
-  to { transform: translateY(110vh); opacity: 0; }
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0;}
 }
 
-.memory {
-  background: white;
-  margin: 30px auto;
-  padding: 15px;
-  max-width: 300px;
-  border-radius: 20px;
+.memory{
+  background:white;
+  margin:30px auto;
+  padding:15px;
+  max-width:300px;
+  border-radius:20px;
 }
 
-.memory img {
-  width: 100%;
-  border-radius: 10px;
+.memory img{
+  width:100%;
+  border-radius:10px;
 }
 
-input[type="file"] {
-  margin: 10px 0;
+.letter{
+  background:white;
+  margin:40px;
+  padding:25px;
+  border-radius:20px;
+  color:#ff3366;
+  line-height:1.6;
 }
 
-.letter {
-  background: white;
-  margin: 40px;
-  padding: 25px;
-  border-radius: 20px;
-  color: #ff3366;
-  line-height: 1.6;
+#cinematic{
+  position:fixed;
+  inset:0;
+  background:black;
+  color:white;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  font-size:22px;
+  z-index:10;
 }
 
-#cinematic {
-  position: fixed;
-  inset: 0;
-  background: black;
-  color: white;
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 22px;
-  z-index: 10;
+.cineline{
+  margin:15px;
+  opacity:0;
+  animation:fade 2s forwards;
 }
 
-.cineline {
-  margin: 15px;
-  opacity: 0;
-  animation: fade 2s forwards;
-}
-
-@keyframes fade {
-  to { opacity: 1; }
-}
-
-#secret {
-  margin-top: 40px;
-  font-size: 12px;
-  color: #ff9ebc;
-  cursor: pointer;
-}
+@keyframes fade{to{opacity:1;}}
 </style>
 </head>
 
@@ -108,7 +95,6 @@ input[type="file"] {
   <h1>Will you be my Valentine? 🧸💗</h1>
   <button id="yesBtn">YES 💞</button>
   <button id="noBtn">No 😒</button>
-  <div id="secret">psst… click me 👀</div>
 </div>
 
 <div id="yesScreen" class="hidden">
@@ -120,12 +106,12 @@ input[type="file"] {
 <div id="memories" class="hidden">
   <h1>Our Memory Lane 📸</h1>
 
-  <div class="memory"><input type="file" accept="image/*" onchange="saveImage(event,0)"><img id="img0"></div>
-  <div class="memory"><input type="file" accept="image/*" onchange="saveImage(event,1)"><img id="img1"></div>
-  <div class="memory"><input type="file" accept="image/*" onchange="saveImage(event,2)"><img id="img2"></div>
-  <div class="memory"><input type="file" accept="image/*" onchange="saveImage(event,3)"><img id="img3"></div>
-  <div class="memory"><input type="file" accept="image/*" onchange="saveImage(event,4)"><img id="img4"></div>
-  <div class="memory"><input type="file" accept="image/*" onchange="saveImage(event,5)"><img id="img5"></div>
+  <div class="memory"><img src="photo1.jpg"></div>
+  <div class="memory"><img src="photo2.jpg"></div>
+  <div class="memory"><img src="photo3.jpg"></div>
+  <div class="memory"><img src="photo4.jpg"></div>
+  <div class="memory"><img src="photo5.jpg"></div>
+  <div class="memory"><img src="photo6.jpg"></div>
 
   <div class="letter">
     <h2>For You 💌</h2>
@@ -150,26 +136,20 @@ thank u for existing S. Harikrish Amarnath... I love u sooo much
 </div>
 
 <script>
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+let scale=1;
 
-let yesScale = 1; // 🔧 FIX #1
-
-noBtn.addEventListener("mouseover", () => {
-  noBtn.style.left = Math.random()*80 + "vw";
-  noBtn.style.top = Math.random()*80 + "vh";
-
-  yesScale += 0.25;               // keeps growing
-  yesBtn.style.transform = `scale(${yesScale})`;
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.left=Math.random()*80+"vw";
+  noBtn.style.top=Math.random()*80+"vh";
+  scale+=0.25;
+  yesBtn.style.transform=`scale(${scale})`;
 });
 
-yesBtn.onclick = () => {
+yesBtn.onclick=()=>{
   question.classList.add("hidden");
   yesScreen.classList.remove("hidden");
-  startHearts();
-};
-
-function startHearts(){
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="heart";
@@ -178,47 +158,16 @@ function startHearts(){
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),5000);
   },300);
-}
+};
 
 function showMemories(){
   yesScreen.classList.add("hidden");
   memories.classList.remove("hidden");
 }
 
-function saveImage(e,i){
-  const reader = new FileReader();
-  reader.onload = () => {
-    localStorage.setItem("photo"+i, reader.result);
-    document.getElementById("img"+i).src = reader.result;
-  };
-  reader.readAsDataURL(e.target.files[0]);
-}
-
-for(let i=0;i<6;i++){
-  const data = localStorage.getItem("photo"+i);
-  if(data) document.getElementById("img"+i).src = data;
-}
-
 function startCinematic(){
   cinematic.style.display="flex";
-
-  // 🔧 FIX #2 – Easter eggs AFTER climax
-  setTimeout(()=>{
-    alert("Still here? 😌 Good. I choose you. Always.");
-  },12000);
 }
-
-document.getElementById("secret").onclick = () =>
-  alert("You’re literally incapable of following instructions and I love you for it.");
-
-let typed="";
-document.addEventListener("keydown",e=>{
-  typed+=e.key.toLowerCase();
-  if(typed.includes("iloveyou")){
-    alert("Okay fine. I love you more. Shut up.");
-    typed="";
-  }
-});
 </script>
 
 </body>
